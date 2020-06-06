@@ -1,0 +1,17 @@
+Simple Retro PixelArt GUI Skin
+
+This package contains 30+ textures, 10+ UI prefabs of Retro Simple Style. 2 demo scenes.
+
+Features:
+
+• UNITY 2019 READY.
+
+• 30+  Textures.
+
+• 2 demo scenes for Portrait and Landscape 
+orientations.
+
+• Supports all Unity player platforms.
+
+• ALL PSD FILE TO EDIT WITH PHOTOSHOP.
+
