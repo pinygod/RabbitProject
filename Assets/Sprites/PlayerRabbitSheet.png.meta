@@ -1,0 +1,452 @@
+fileFormatVersion: 2
+guid: c9b0b5c69833788429f7c60098ac9567
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1726007947791034792
+    second: easter_bunny-F_0
+  - first:
+      213: -7282104241722287743
+    second: easter_bunny-F_1
+  - first:
+      213: 4407930797169068935
+    second: easter_bunny-F_2
+  - first:
+      213: -9151599169771517334
+    second: easter_bunny-F_3
+  - first:
+      213: 8809679712838531277
+    second: easter_bunny-F_4
+  - first:
+      213: -5606307260698540607
+    second: easter_bunny-F_5
+  - first:
+      213: 4543482325269492140
+    second: easter_bunny-F_6
+  - first:
+      213: -8231949953110887049
+    second: easter_bunny-F_7
+  - first:
+      213: 5812673404639024767
+    second: easter_bunny-F_8
+  - first:
+      213: 3966814317077714044
+    second: easter_bunny-F_9
+  - first:
+      213: 5941347095876240874
+    second: easter_bunny-F_10
+  - first:
+      213: -2008497439948190021
+    second: easter_bunny-F_11
+  - first:
+      213: -28999246433203389
+    second: PlayerRabbitSheet_0
+  - first:
+      213: -1929088231336375232
+    second: PlayerRabbitSheet_1
+  - first:
+      213: 141105544708231862
+    second: PlayerRabbitSheet_2
+  - first:
+      213: 771717842677352829
+    second: PlayerRabbitSheet_3
+  - first:
+      213: -6747577337927031779
+    second: PlayerRabbitSheet_4
+  - first:
+      213: 1676235693739753554
+    second: PlayerRabbitSheet_5
+  - first:
+      213: -61164977367747593
+    second: PlayerRabbitSheet_6
+  - first:
+      213: -4188326150595892089
+    second: PlayerRabbitSheet_7
+  - first:
+      213: -6065828617753107496
+    second: PlayerRabbitSheet_8
+  - first:
+      213: 8730112588234300949
+    second: PlayerRabbitSheet_9
+  - first:
+      213: 4134210828020524781
+    second: PlayerRabbitSheet_10
+  - first:
+      213: -106846932430823591
+    second: PlayerRabbitSheet_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b4899c659f89ff0800000000000000
+      internalID: -28999246433203389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 195
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c0fce69708a35e0800000000000000
+      internalID: -1929088231336375232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 193
+        width: 31
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b21c2ccebe45f100800000000000000
+      internalID: 141105544708231862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 129
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d794d970a41b5ba00800000000000000
+      internalID: 771717842677352829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 131
+        width: 24
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14226e492acb52a0800000000000000
+      internalID: -6747577337927031779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 129
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 250403d7b7f234710800000000000000
+      internalID: 1676235693739753554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 65
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3fc43f6c2b62ff0800000000000000
+      internalID: -61164977367747593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 67
+        width: 35
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ca0468e8310e5c0800000000000000
+      internalID: -4188326150595892089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 64
+        width: 28
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d36d62a209d1dba0800000000000000
+      internalID: -6065828617753107496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_9
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51e1fd61527972970800000000000000
+      internalID: 8730112588234300949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_10
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 1
+        width: 24
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6acb618daaf5930800000000000000
+      internalID: 4134210828020524781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerRabbitSheet_11
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fde13f747648ef0800000000000000
+      internalID: -106846932430823591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

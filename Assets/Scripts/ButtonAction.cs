@@ -10,7 +10,9 @@ public class ButtonAction : MonoBehaviour
             case "PlayButton":
                 SceneManager.LoadScene("RabbitCatchScene");
                 break;
-
+            case "CasinoButton":
+                SceneManager.LoadScene("SlotScene");
+                break;
        }
    }
 }

@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 76c78e81f9f746146b2e0c25e14d791e, type: 3}
+  m_Sprite: {fileID: 5996329243640223599, guid: 9fb7b3e7333aa6f4db844978055a3b5c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +100,8 @@ MonoBehaviour:
   speed: 0.01
   rabbit: {fileID: 4251165499167080308}
   sprites:
-  - {fileID: 21300000, guid: 4e3a541a2894e08488480d0a87c968cb, type: 3}
-  - {fileID: 21300000, guid: 85b249a0cfbc11743800f90fd19b8a94, type: 3}
+  - {fileID: 5996329243640223599, guid: 9fb7b3e7333aa6f4db844978055a3b5c, type: 3}
+  - {fileID: 2804245269442884235, guid: 9fb7b3e7333aa6f4db844978055a3b5c, type: 3}
 --- !u!65 &4251165499167080314
 BoxCollider:
   m_ObjectHideFlags: 0
