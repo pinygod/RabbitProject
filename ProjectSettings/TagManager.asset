@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - CatchRabbit
+  - BlackD
+  - GreenD
+  - RedD
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,9 @@ public class ButtonAction : MonoBehaviour
             case "CasinoButton":
                 SceneManager.LoadScene("SlotScene");
                 break;
+            case "DoubleButton":
+                SceneManager.LoadScene("DoubleScene");
+                break;                
        }
    }
 }

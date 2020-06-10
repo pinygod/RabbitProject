@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RabbitCatchScene.unity
     guid: 5a8ad04e674c31b41afd0d36e49194f4
+  - enabled: 1
+    path: Assets/Scenes/DoubleScene.unity
+    guid: 58863477555ebd448b81a0bfe433ac8a
   m_configObjects: {}
