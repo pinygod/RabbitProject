@@ -844,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.96, y: -17.958}
+  m_AnchoredPosition: {x: 87.96002, y: -17.958008}
   m_SizeDelta: {x: 84.60315, y: 35.915924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &261546512
@@ -916,7 +916,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2056,7 +2056,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862266419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -576}
+  m_LocalPosition: {x: 0, y: 0, z: -133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1574775472}
@@ -3076,6 +3076,7 @@ GameObject:
   - component: {fileID: 1423350177}
   - component: {fileID: 1423350176}
   - component: {fileID: 1423350175}
+  - component: {fileID: 1423350178}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
@@ -3141,6 +3142,22 @@ RectTransform:
   m_AnchoredPosition: {x: 2.4000244, y: 2.4000244}
   m_SizeDelta: {x: 36.787903, y: 36.799194}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &1423350178
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423350174}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: f570e96423e85ab42b923067bbbc53b3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: f570e96423e85ab42b923067bbbc53b3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1485639224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,6 +3630,7 @@ GameObject:
   - component: {fileID: 1574775472}
   - component: {fileID: 1574775474}
   - component: {fileID: 1574775473}
+  - component: {fileID: 1574775475}
   m_Layer: 5
   m_Name: BetMenuPanel
   m_TagString: Untagged
@@ -3679,6 +3697,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574775471}
   m_CullTransparentMesh: 0
+--- !u!111 &1574775475
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574775471}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: f570e96423e85ab42b923067bbbc53b3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: f570e96423e85ab42b923067bbbc53b3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1602902260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4357,7 +4391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840830295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1719924, y: -0.36736283, z: -7478.958}
+  m_LocalPosition: {x: -1.1719924, y: -0.36736283, z: -7486.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1314707708}

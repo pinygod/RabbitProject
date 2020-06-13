@@ -18,7 +18,7 @@ public class RabbitsMove : MonoBehaviour {
             gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
         }
         SpriteCnt++;
-        if (transform.position.y < -4.7f || transform.position.x > 3.3f || transform.position.x < -2f)
+        if (transform.position.y < -(Camera.main.orthographicSize) || transform.position.x > (Camera.main.orthographicSize * Screen.width / Screen.height) || transform.position.x < -(Camera.main.orthographicSize * Screen.width / Screen.height))
         {
             Destroy(gameObject);
         }

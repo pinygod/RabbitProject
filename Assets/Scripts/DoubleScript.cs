@@ -48,7 +48,7 @@ public class DoubleScript : MonoBehaviour
 
     public void StartBtn() {
         inputPanel.SetActive(true);
-        fade = Random.Range(3f, 3.5f);
+        fade = Random.Range(3.3f, 3.5f);
     }
 
     public void red10() {
