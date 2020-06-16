@@ -7,15 +7,18 @@ public class ButtonAction : MonoBehaviour
 {
    private void OnMouseUpAsButton() {
        switch (gameObject.name) {
-            case "PlayButton":
+            case "CatchButton":
                 SceneManager.LoadScene("RabbitCatchScene");
                 break;
             case "CasinoButton":
                 SceneManager.LoadScene("SlotScene");
                 break;
-            case "DoubleButton":
+            case "OptionsButton":
                 SceneManager.LoadScene("DoubleScene");
-                break;                
+                break;
+            case "PlayButton":
+                SceneManager.LoadScene("FarmScene");
+                break;                                
        }
    }
 }

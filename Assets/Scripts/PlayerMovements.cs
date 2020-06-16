@@ -7,9 +7,10 @@ public class PlayerMovements : MonoBehaviour
 {    
     public float speed;
     public Text CurrentCoins;
-    public Sprite[] sprites = new Sprite[5];
-    private int PlayerScore, SpriteCnt = 0;
+    private int PlayerScore;
+    private Animator running;
     private void Start() {
+        running = GetComponent<Animator>();
         if (PlayerPrefs.HasKey("score") == false) {
             PlayerPrefs.SetInt("score", 0);
         }
@@ -20,28 +21,19 @@ public class PlayerMovements : MonoBehaviour
     {
         if(Input.touchCount > 0) {
             if (Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x > 0.2f) {
-                SpriteCnt++;
-                if (SpriteCnt % 10 <= 5) {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
-                }
-                else {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
-                }
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(Camera.main.orthographicSize * Screen.width / Screen.height - 0.45f, transform.position.y), 3.7f * Time.deltaTime);
+                running.SetBool("isRunningLeft", false);
+                running.SetBool("isRunningRight", true);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(Camera.main.orthographicSize * Screen.width / Screen.height - 0.45f, transform.position.y), 3.5f * Time.deltaTime);
             }
             else if (Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x < -0.2f) {
-                SpriteCnt++;
-                if (SpriteCnt % 10 <= 5) {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
-                }
-                else {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
-                }
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(-Camera.main.orthographicSize * Screen.width / Screen.height + 0.45f, transform.position.y), 3.7f * Time.deltaTime);
+                running.SetBool("isRunningRight", false);
+                running.SetBool("isRunningLeft", true);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(-Camera.main.orthographicSize * Screen.width / Screen.height + 0.45f, transform.position.y), 3.5f * Time.deltaTime);
             }
         }
         else {
-            gameObject.GetComponent<SpriteRenderer>().sprite = sprites[4];
+            running.SetBool("isRunningLeft", false);
+            running.SetBool("isRunningRight", false);
         }
         
         //transform.position = new Vector3(pos.x, transform.position.y, transform.position.z);

@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 1207286325}
   - component: {fileID: 1207286328}
   - component: {fileID: 1207286327}
+  - component: {fileID: 1207286329}
   m_Layer: 0
   m_Name: PlayerRabbit
   m_TagString: Untagged
@@ -772,12 +773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   CurrentCoins: {fileID: 1861311008}
-  sprites:
-  - {fileID: 771717842677352829, guid: c9b0b5c69833788429f7c60098ac9567, type: 3}
-  - {fileID: 1676235693739753554, guid: c9b0b5c69833788429f7c60098ac9567, type: 3}
-  - {fileID: 8730112588234300949, guid: c9b0b5c69833788429f7c60098ac9567, type: 3}
-  - {fileID: -106846932430823591, guid: c9b0b5c69833788429f7c60098ac9567, type: 3}
-  - {fileID: -1929088231336375232, guid: c9b0b5c69833788429f7c60098ac9567, type: 3}
 --- !u!54 &1207286328
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -794,6 +789,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!95 &1207286329
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207286323}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4dba484cc533dca4693a97e4594ec557, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1314707707
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,7 @@ public class PauseMenu : MonoBehaviour
         switch (gameObject.name) {
             case "MenuButton":
                 //EditorApplication.isPaused = true;
-                MenuPanel.SetActive(true);
-                MenuPanel.GetComponent<Animation>().Play("OpenAnim");                
+                MenuPanel.SetActive(true);          
                 Time.timeScale = 0f;
 
                 break;
