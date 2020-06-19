@@ -40,6 +40,8 @@
      <Compile Include="Assets\Scripts\DoubleScript.cs" />
      <Compile Include="Assets\Scripts\Farm\CageClick.cs" />
      <Compile Include="Assets\Scripts\Farm\PlayerMovementsFarm.cs" />
+     <Compile Include="Assets\Scripts\Farm\WareHouse.cs" />
+     <Compile Include="Assets\Scripts\OrientationScript.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PlayerMovements.cs" />
      <Compile Include="Assets\Scripts\RabbitsMove.cs" />

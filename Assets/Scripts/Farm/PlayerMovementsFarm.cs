@@ -63,8 +63,4 @@ public class PlayerMovementsFarm : MonoBehaviour
         //transform.Translate(dir.normalized * Time.deltaTime * speed);
     }
 
-    void OnDestroy() {
-        PlayerPrefs.SetInt("score", PlayerScore);
-    }
-
 }
