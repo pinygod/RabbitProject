@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonAction : MonoBehaviour
 {
    private void OnMouseUpAsButton() {
+       GameObject.Find("AudioController").GetComponent<AudioSource>().Play();
        switch (gameObject.name) {
             case "CatchButton":
                 SceneManager.LoadScene("RabbitCatchScene");

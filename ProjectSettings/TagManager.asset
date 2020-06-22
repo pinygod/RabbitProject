@@ -8,6 +8,7 @@ TagManager:
   - BlackD
   - GreenD
   - RedD
+  - AudioController
   layers:
   - Default
   - TransparentFX

@@ -8,9 +8,10 @@ using System;
 public class CageClick : MonoBehaviour, IPointerClickHandler
 {
 
-    public GameObject cagePanel, wareHouse;
-    public Text rabbitsInCageText, foodInCageText, MoneyUI, FoodUI, fluffInCageText;
-    private static float cageWasOffline, lastFood, lastFluff, rabbitsInCage, newFluff, cageLevel;
+    public GameObject CagePanel, WareHouse;
+    public Text RabbitsInCageText, FoodInCageText, FluffInCageText, PlayerMoney;
+    private static float cageWasOffline;
+    private static int lastFood, lastFluff, rabbitsInCage, newFluff, cageLevel, cageFoodCapacity, cageFluffCapacity, cageRabbitsCapacity;
     private static GameObject lastGameObject;
 
     public void OnPointerClick(PointerEventData eventData)
@@ -19,47 +20,7 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
         Debug.Log("Was initiated: " + gameObject.name);
         Time.timeScale = 0f;
 
-        if (PlayerPrefs.HasKey(gameObject.name + "Level"))
-        {
-            cageLevel = PlayerPrefs.GetInt(gameObject.name + "Level");
-        }
-        else
-        {
-            PlayerPrefs.SetInt(gameObject.name + "Level", 1);
-            cageLevel = 1;
-        }
-
-        if (PlayerPrefs.HasKey(gameObject.name + "LastFood"))
-        {
-            lastFood = PlayerPrefs.GetFloat(gameObject.name + "LastFood");
-        }
-        else
-        {
-            lastFood = 0;
-        }
-
-
-        if (PlayerPrefs.HasKey(gameObject.name + "LastFluff"))
-        {
-            lastFluff = PlayerPrefs.GetFloat(gameObject.name + "LastFluff");
-
-        }
-        else
-        {
-            lastFluff = 0;
-        }
-
-
-        if (PlayerPrefs.HasKey(gameObject.name + "LastRabbits"))
-        {
-            rabbitsInCage = PlayerPrefs.GetFloat(gameObject.name + "LastRabbits");
-
-        }
-        else
-        {
-            rabbitsInCage = 0;
-        }
-
+        getValues();
         if (PlayerPrefs.HasKey(gameObject.name + "LastSession"))
         {
             TimeSpan ts = DateTime.Now - DateTime.Parse(PlayerPrefs.GetString(gameObject.name + "LastSession"));
@@ -90,29 +51,40 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
             PlayerPrefs.SetString(lastGameObject.name + "LastSession", DateTime.Now.ToString());
         }
 
-        foodInCageText.text = ((int)(lastFood)).ToString() + "/" + cageLevel * 30;
-        fluffInCageText.text = ((int)(lastFluff)).ToString() + "/" + cageLevel * 50;
-        rabbitsInCageText.text = ((int)(rabbitsInCage)).ToString() + "/" + cageLevel * 5;
-        cagePanel.SetActive(true);
+        FoodInCageText.text = lastFood.ToString() + "/" + cageFoodCapacity;
+        FluffInCageText.text = lastFluff.ToString() + "/" + cageFluffCapacity;
+        RabbitsInCageText.text = rabbitsInCage.ToString() + "/" + cageRabbitsCapacity;
+        CagePanel.SetActive(true);
 
+    }
+
+    private void getValues()
+    {
+        cageLevel = PlayerPrefs.GetInt(gameObject.name + "Level");
+        lastFood = PlayerPrefs.GetInt(gameObject.name + "Food");
+        lastFluff = PlayerPrefs.GetInt(gameObject.name + "Fluff");
+        rabbitsInCage = PlayerPrefs.GetInt(gameObject.name + "Rabbits");
+        cageRabbitsCapacity = PlayerPrefs.GetInt(gameObject.name + "RabbitsCapacity");
+        cageFoodCapacity = PlayerPrefs.GetInt(gameObject.name + "FoodCapacity");
+        cageFluffCapacity = PlayerPrefs.GetInt(gameObject.name + "FluffCapacity");
     }
 
     public void OnCloseClick()
     {
-        PlayerPrefs.SetFloat(lastGameObject.name + "LastRabbits", rabbitsInCage);
-        PlayerPrefs.SetFloat(lastGameObject.name + "LastFluff", lastFluff);
-        PlayerPrefs.SetFloat(lastGameObject.name + "LastFood", lastFood);
-        cagePanel.SetActive(false);
+        PlayerPrefs.SetInt(lastGameObject.name + "Rabbits", rabbitsInCage);
+        PlayerPrefs.SetInt(lastGameObject.name + "Fluff", lastFluff);
+        PlayerPrefs.SetInt(lastGameObject.name + "Food", lastFood);
+        CagePanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void OnAddClick()
     {
-        if (lastFood < cageLevel * 30)
+        if (lastFood < cageFoodCapacity)
         {
-            if (wareHouse.GetComponent<WareHouse>().getFood())
+            if (WareHouse.GetComponent<WareHouse>().getFood())
             {
-                lastGameObject.GetComponent<CageClick>().foodInCageText.text = (++lastFood).ToString() + "/" + cageLevel * 30;
+                FoodInCageText.text = (++lastFood).ToString() + "/" + cageFoodCapacity;
                 Debug.Log("Was added to: " + lastGameObject.name);
             }
         }
@@ -128,8 +100,36 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
     {
         if (lastFluff > 0)
         {
-            lastFluff = wareHouse.GetComponent<WareHouse>().putFluff((int)lastFluff);
-            lastGameObject.GetComponent<CageClick>().fluffInCageText.text = lastFluff.ToString() + "/" + cageLevel * 50;
+            lastFluff = WareHouse.GetComponent<WareHouse>().putFluff(lastFluff);
+            FluffInCageText.text = lastFluff.ToString() + "/" + cageFluffCapacity;
+        }
+    }
+
+    public void OnClickUpgrade()
+    {
+        int pMoney = PlayerPrefs.GetInt("score");
+        Debug.Log(pMoney);
+        if (pMoney >= cageLevel * 1000)
+        {
+            pMoney -= cageLevel * 1000;
+            Debug.Log(pMoney);
+            cageLevel++;
+            cageFoodCapacity = cageLevel * 30;
+            cageFluffCapacity = cageLevel * 50;
+            cageRabbitsCapacity = cageLevel * 5;
+            PlayerPrefs.SetInt(lastGameObject.name + "Level", cageLevel);
+            PlayerPrefs.SetInt(lastGameObject.name + "FoodCapacity", cageFoodCapacity);
+            PlayerPrefs.SetInt(lastGameObject.name + "FluffCapacity", cageFluffCapacity);
+            PlayerPrefs.SetInt(lastGameObject.name + "RabbitsCapacity", cageRabbitsCapacity);
+            FluffInCageText.text = lastFluff.ToString() + "/" + cageFluffCapacity;
+            FoodInCageText.text = lastFood.ToString() + "/" + cageFoodCapacity;
+            RabbitsInCageText.text = rabbitsInCage.ToString() + "/" + cageRabbitsCapacity;
+            PlayerPrefs.SetInt("score", pMoney);
+            PlayerMoney.text = pMoney.ToString();
+        }
+        else
+        {
+            //TODO: Not enough money msg
         }
     }
 }

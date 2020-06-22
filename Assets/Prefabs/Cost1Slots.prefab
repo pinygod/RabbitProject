@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2615682893017801505}
   - component: {fileID: 5318852309686464021}
   m_Layer: 5
-  m_Name: Blue
+  m_Name: Cost1Slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,13 +59,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4898932, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b514636564c57354b82307ae98e00e87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

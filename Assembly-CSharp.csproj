@@ -37,18 +37,22 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonAction.cs" />
-     <Compile Include="Assets\Scripts\DoubleScript.cs" />
+     <Compile Include="Assets\Scripts\Catch\PlayerMovements.cs" />
+     <Compile Include="Assets\Scripts\Catch\RabbitsMove.cs" />
+     <Compile Include="Assets\Scripts\Catch\SpawnRabbits.cs" />
+     <Compile Include="Assets\Scripts\ClickSound.cs" />
+     <Compile Include="Assets\Scripts\Double\DoubleScript.cs" />
+     <Compile Include="Assets\Scripts\Double\ScrollDouble.cs" />
      <Compile Include="Assets\Scripts\Farm\CageClick.cs" />
+     <Compile Include="Assets\Scripts\Farm\ControlValues.cs" />
      <Compile Include="Assets\Scripts\Farm\PlayerMovementsFarm.cs" />
+     <Compile Include="Assets\Scripts\Farm\Shop.cs" />
      <Compile Include="Assets\Scripts\Farm\WareHouse.cs" />
      <Compile Include="Assets\Scripts\OrientationScript.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovements.cs" />
-     <Compile Include="Assets\Scripts\RabbitsMove.cs" />
-     <Compile Include="Assets\Scripts\RouletteScript.cs" />
-     <Compile Include="Assets\Scripts\ScrollDouble.cs" />
-     <Compile Include="Assets\Scripts\ScrollRoulette.cs" />
-     <Compile Include="Assets\Scripts\SpawnRabbits.cs" />
+     <Compile Include="Assets\Scripts\Slots\Raycast.cs" />
+     <Compile Include="Assets\Scripts\Slots\RouletteScript.cs" />
+     <Compile Include="Assets\Scripts\Slots\ScrollRoulette.cs" />
      <None Include="Assets\GUIRETROSKIN\DOC\DESCRIPTION.txt" />
     <Reference Include="UnityEngine">
         <HintPath>G:/Unity/2019.3.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
