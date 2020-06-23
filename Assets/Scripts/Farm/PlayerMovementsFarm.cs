@@ -56,12 +56,13 @@ public class PlayerMovementsFarm : MonoBehaviour
                 running.SetBool("isRunningLeft", true);
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(-1000f, transform.position.y), 3.5f * Time.deltaTime);
             }
+            else
             {
-            running.SetBool("isRunningUp", false);
-            running.SetBool("isRunningDown", false);
-            running.SetBool("isRunningLeft", false);
-            running.SetBool("isRunningRight", false);
-        }
+                running.SetBool("isRunningUp", false);
+                running.SetBool("isRunningDown", false);
+                running.SetBool("isRunningLeft", false);
+                running.SetBool("isRunningRight", false);
+            }
         }
         else
         {

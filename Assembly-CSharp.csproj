@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\Double\DoubleScript.cs" />
      <Compile Include="Assets\Scripts\Double\ScrollDouble.cs" />
      <Compile Include="Assets\Scripts\Farm\CageClick.cs" />
+     <Compile Include="Assets\Scripts\Farm\CameraController.cs" />
      <Compile Include="Assets\Scripts\Farm\ControlValues.cs" />
      <Compile Include="Assets\Scripts\Farm\PlayerMovementsFarm.cs" />
      <Compile Include="Assets\Scripts\Farm\Shop.cs" />
@@ -656,6 +657,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
