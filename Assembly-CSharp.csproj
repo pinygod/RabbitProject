@@ -36,6 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Farm\LowPolyFencePack\Scripts\DoorController.cs" />
+     <Compile Include="Assets\Farm\LowPolyFencePack\Scripts\DoorToggle.cs" />
      <Compile Include="Assets\Scripts\ButtonAction.cs" />
      <Compile Include="Assets\Scripts\Catch\PlayerMovements.cs" />
      <Compile Include="Assets\Scripts\Catch\RabbitsMove.cs" />
@@ -580,6 +582,9 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
@@ -643,6 +648,9 @@
     <Reference Include="Unity.2D.Animation.Editor">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -657,12 +665,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>C:/Users/pinyt/RabbitProject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

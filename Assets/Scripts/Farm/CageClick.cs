@@ -82,7 +82,7 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
     {
         if (lastFood < cageFoodCapacity)
         {
-            if (WareHouse.GetComponent<WareHouse>().getFood())
+            if (WareHouse.GetComponent<WareHouse>().GetFood())
             {
                 FoodInCageText.text = (++lastFood).ToString() + "/" + cageFoodCapacity;
                 Debug.Log("Was added to: " + lastGameObject.name);
@@ -100,7 +100,7 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
     {
         if (lastFluff > 0)
         {
-            lastFluff = WareHouse.GetComponent<WareHouse>().putFluff(lastFluff);
+            lastFluff = WareHouse.GetComponent<WareHouse>().PutFluff(lastFluff);
             FluffInCageText.text = lastFluff.ToString() + "/" + cageFluffCapacity;
         }
     }

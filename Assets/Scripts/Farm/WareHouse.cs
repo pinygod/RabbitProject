@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class WareHouse : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
     private int foodCount, fluffCount, whLevel, whFoodCapacity, whFluffCapacity;
     [Header("Text fields")]
     public Text FoodText, FluffText, PlayerMoney;
@@ -15,7 +16,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Time.timeScale = 0f;
-        getValues();
+        GetValues();
 
         FoodText.text = foodCount.ToString() + " / " + whFoodCapacity.ToString();
         FluffText.text = fluffCount.ToString() + " / " + whFluffCapacity.ToString();
@@ -24,7 +25,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
 
     }
 
-    private void getValues()
+    private void GetValues()
     {
         Debug.Log("Getting values...");
         whLevel = PlayerPrefs.GetInt("WareHouseLevel");
@@ -34,7 +35,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         fluffCount = PlayerPrefs.GetInt("WareHouseFluff");
     }
 
-    private void updateValues()
+    private void UpdateValues()
     {
         Debug.Log("Updating values...");
         PlayerPrefs.SetInt("WareHouseFood", foodCount);
@@ -59,7 +60,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         {
             int pMoney = PlayerPrefs.GetInt("score") + Random.Range(fluffCount - fluffCount / 4, fluffCount + fluffCount / 4);
             fluffCount = 0;
-            updateValues();
+            UpdateValues();
             PlayerPrefs.SetInt("score", pMoney);
             PlayerMoney.text = pMoney.ToString();
         }
@@ -87,7 +88,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
                 foodCount += Mathf.Min(maxFoodCapacity, traded);
                 fluffCount = 0;
             }
-            updateValues();
+            UpdateValues();
         }
         else
         {
@@ -104,7 +105,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
             whLevel++;
             whFoodCapacity = whLevel * 30;
             whFluffCapacity = whLevel * 60;
-            updateValues();
+            UpdateValues();
             PlayerPrefs.SetInt("score", pMoney);
             PlayerMoney.text = pMoney.ToString();
         }
@@ -117,9 +118,9 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
 
 
     #region Interactions: cage with warehouse items 
-    public int putFluff(int newFluff)
+    public int PutFluff(int newFluff)
     {
-        getValues();
+        GetValues();
         int freeSpace = whFluffCapacity - fluffCount, leftover;
         if (freeSpace >= newFluff)
         {
@@ -135,9 +136,9 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         return leftover;
     }
 
-    public bool getFood()
+    public bool GetFood()
     {
-        getValues();
+        GetValues();
         if (foodCount > 0)
         {
             PlayerPrefs.SetInt("WareHouseFood", --foodCount);

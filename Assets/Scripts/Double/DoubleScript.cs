@@ -7,13 +7,13 @@ public class DoubleScript : MonoBehaviour
 {
     public GameObject[] Colors;
     public GameObject scrollPanel, inputPanel;
-    public Text CurrentCoins;
+    public Text CurrentCoins, BetSizeText;
     public Button SpinButton;
     public bool IsSpinning = false;
     public float scrollSpeed;
 
     private ScrollDouble sr1;
-    private int playerScore, sum, playerBet;
+    private int playerScore, betSize = 10;
     private string playerColor;
     private float fade;
 
@@ -37,7 +37,15 @@ public class DoubleScript : MonoBehaviour
                     IsSpinning = false;
                     if (playerColor == hit.collider.gameObject.tag)
                     {
-                        ChangePlayerScore(playerBet * 2);
+                        if (playerColor == "GreenD")
+                        {
+                            ChangePlayerScore(betSize * 7);
+                        }
+                        else
+                        {
+                            ChangePlayerScore(betSize * 2);
+                        }
+                        
                     }
                     SpinButton.interactable = true;
                 }
@@ -53,26 +61,14 @@ public class DoubleScript : MonoBehaviour
     {
         SpinButton.interactable = false;
         inputPanel.SetActive(true);
-        fade = Random.Range(3.3f, 3.5f);
+
     }
 
     public void BetDone(Button button)
     {
+        fade = Random.Range(3.3f, 3.5f);
         playerColor = button.tag;
-        // switch (button.name[0])
-        // {
-        //     case 'R':
-        //         playerColor = "RedD";
-        //         break;
-        //     case 'G':
-        //         playerColor = "GreenD";
-        //         break;
-        //     case 'B':
-        //         playerColor = "BlackD";
-        //         break;
-        // }
-        playerBet = int.Parse(button.name);
-        if (playerScore >= playerBet)
+        if (playerScore >= betSize)
         {
             Spin();
         }
@@ -85,9 +81,27 @@ public class DoubleScript : MonoBehaviour
         PlayerPrefs.SetInt("score", playerScore);
     }
 
+    public void PlusButtonClick()
+    {
+        if (betSize + 10 <= playerScore)
+        {
+            betSize += 10;
+            BetSizeText.text = betSize.ToString();
+        }
+    }
+
+    public void MinusButtonClick()
+    {
+        if (betSize >= 20)
+        {
+            betSize -= 10;
+            BetSizeText.text = betSize.ToString();
+        }
+    }
+
     private void Spin()
     {
-        ChangePlayerScore(-playerBet);
+        ChangePlayerScore(-betSize);
         inputPanel.SetActive(false);
         sr1.Clear();
         scrollSpeed = -20f;

@@ -25,14 +25,14 @@ public class CameraController : MonoBehaviour
 
         if (currentY != lastY)
         {
-            isMovingDown = currentY < lastY ? true : false;
-            isMovingUp = currentY > lastY ? true : false;
+            isMovingDown = currentY < lastY;
+            isMovingUp = !isMovingDown;
             isMoving = true;
         }
         else if (currentX != lastX)
         {
-            isMovingLeft = currentX < lastX ? true : false;
-            isMovingRight = currentX > lastX ? true : false;
+            isMovingLeft = currentX < lastX;
+            isMovingRight = !isMovingLeft;
             isMoving = true;
         }
         else
