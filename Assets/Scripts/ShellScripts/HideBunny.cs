@@ -6,92 +6,70 @@ using UnityEngine;
 
 public class HideBunny : MonoBehaviour
 {
-    public GameObject[] hats;
-    public GameObject bunny;
-    public GameObject hat;
-    public GameObject newHat;
+    public GameObject[] Hats;
+    public GameObject Rabbit;
+    private GameObject StartHat;
 
-    [SerializeField] private float huy;
-
-    private Vector2 hatStartPosition;
-    private Vector2 hatTargetPosition;
+    private Vector3 hatStartPosition;
+    private Vector3 hatTargetPosition;
+    private Vector3 hat1Pos, hat2Pos, hat3Pos;
     private float time = 0;
-    
-    [SerializeField] private int ctr = 0;
+    private bool IsMovingHatUp = false;
 
-    float Easing(float x)
-    {
-        ctr++;
-        huy = x < 0.5 ? x * x * 2 : (1 - (1 - x) * (1 - x) * 2);
-        return x < 0.5 ? x * x * 2 : (1 - (1 - x) * (1 - x) * 2);
-    }
-
-    [SerializeField] private Vector3 hat1pos, hat2pos, hat3pos;
 
     void Start()
     {
-        hat1pos = hats[0].transform.position;
-        hat2pos = hats[1].transform.position;
-        hat3pos = hats[2].transform.position;
+        hat1Pos = Hats[0].transform.position;
+        hat2Pos = Hats[1].transform.position;
+        hat3Pos = Hats[2].transform.position;
     }
 
     void Update()
     {
-        if (glagster == true) {
-
-        if ((ctr > 2) && (huy <= 0))
+        if (IsMovingHatUp == true)
         {
-            hats[0].GetComponent<HatsMixer>().kek();
-            hats[1].GetComponent<HatsMixer>().kek();
-            hats[2].GetComponent<HatsMixer>().kek();
-
-            GameObject zemletrus = GameObject.Find("Bunny(Clone)");
-            Destroy(zemletrus);
-            //enabled = false;
-            glagster = false;
-        }
-        else
-        {
-            hat.transform.position = Vector2.Lerp(hatStartPosition, hatTargetPosition, Easing(time));
             time += Time.deltaTime;
-        }
+            StartHat.transform.position = Vector2.Lerp(hatStartPosition, hatTargetPosition, Easing(time));
 
+            if (StartHat.transform.position == hatStartPosition)
+            {
+                Destroy(GameObject.Find("RabbitShellGame(Clone)"));
+                Hats[0].GetComponent<HatsMixer>().MixHats();
+                Hats[1].GetComponent<HatsMixer>().MixHats();
+                Hats[2].GetComponent<HatsMixer>().MixHats();
+
+                IsMovingHatUp = false;
+            }
         }
     }
 
-    public void newBunny()
+    private float Easing(float x)
     {
-        newHat = hats[Random.Range(0, hats.Length)];
-        Instantiate(bunny, newHat.transform.position, Quaternion.identity);
+        return x < 0.5 ? x * x * 2 : (1 - (1 - x) * (1 - x) * 2);
     }
 
-    //public GameObject Hat;
+    public GameObject newBunny()
+    {
+        StartHat = Hats[Random.Range(0, Hats.Length)];
+        Instantiate(Rabbit, StartHat.transform.position, Quaternion.identity);
+        return StartHat;
+    }
 
-    public HatsMixer HatsMixer;
+    public void startButton()
+    {
+        time = 0;
+        Hats[0].transform.position = hat1Pos;
+        Hats[1].transform.position = hat2Pos;
+        Hats[2].transform.position = hat3Pos;
+        Destroy(GameObject.Find("RabbitShellGame(Clone)"));
 
-    bool glagster = false;
-
-    public void startButton () {
-        //hats[0].transform.position = hat1pos;
-        //hats[1].transform.position = hat2pos;
-        //hats[2].transform.position = hat3pos;
-
-        hats[0].GetComponent<HatsMixer>().clear();
-        hats[1].GetComponent<HatsMixer>().clear();
-        hats[2].GetComponent<HatsMixer>().clear();
-
-        ctr = 0;
-
-        HatsMixer.flagster = false;
-        glagster = true;
-
-        hat = hats[Random.Range(0, hats.Length)];
-
-        hatStartPosition = hat.transform.position;
+        StartHat = Hats[Random.Range(0, Hats.Length)];
+        hatStartPosition = StartHat.transform.position;
         hatTargetPosition = hatStartPosition;
         hatTargetPosition.y += 1.5f;
 
-        Instantiate(bunny, hatStartPosition, Quaternion.identity);
+        Instantiate(Rabbit, hatStartPosition, Quaternion.identity);
+        IsMovingHatUp = true;
     }
-  
+
 }

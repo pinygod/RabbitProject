@@ -5,118 +5,75 @@ using UnityEditor;
 
 public class HatsMixer : MonoBehaviour
 {
-    //
-    private HideBunny hideBunny;
-    //
-
     public GameObject shellController;
-
-    private Vector2 hatStartPosition;
-    private Vector2 hatTargetPosition;
-    public float time = 0;
+    private GameObject realHat, chosenHat;
+    private Vector3 hatStartPosition;
+    private Vector3 hatTargetPosition = new Vector2(0, 0);
+    private Vector3 realHatTargetPosition;
+    private float time = 0;
+    private static bool IsAbleToChooseHat = false;
+    private bool rFlag = false, IsHatsMixing = false;
 
     private void Start()
     {
-        glag = false;
-        
         hatStartPosition = transform.position;
-        hatTargetPosition = new Vector2(0, 0);
     }
 
-    //
-    float speed = 0.1f;
-    //
+    void Update()
+    {
+        if (IsHatsMixing == true)
+        {
+            Debug.Log(gameObject.name);
+            time += Time.deltaTime;
+            transform.position = Vector2.Lerp(hatStartPosition, hatTargetPosition, Easing(time));
+        }
 
-    bool glag = false;
-    bool flag = false;
-    bool rFlag = false;
-    bool wFlag = false;
+        if (IsHatsMixing && (transform.position == hatStartPosition))
+        {
+            IsHatsMixing = false;
+            IsAbleToChooseHat = true;
+        }
 
-    float Easing(float x)
+        if (rFlag == true)
+        {
+            realHat.transform.position = Vector2.Lerp(realHat.transform.position, realHatTargetPosition, time * time);
+            time += Time.deltaTime;
+            if (realHat.transform.position == realHatTargetPosition)
+                rFlag = false;
+        }
+    }
+
+    private float Easing(float x)
     {
         return x < 0.5 ? x * x * 2 : (1 - (1 - x) * (1 - x) * 2);
     }
 
-    float EasingNo(float x) {
-        return Mathf.Asin(Mathf.Sin(x));
-    }
-
-    float EasingLinear (float x) {
-        return (x*x*x) / 2;
-    }
-
-    public void kek()
+    public void MixHats()
     {
-        glag = true;
-    }
-
-    public int ctr2 = 0;
-
-    void Update()
-    {
-        if (glag == true)
-        {
-            ctr2 ++;
-            transform.position = Vector2.Lerp(hatStartPosition, hatTargetPosition, Easing(time));
-            time += Time.deltaTime;
-        }
-
-        if (flag == false) {
-        if ((ctr2 >= 10) && (transform.position.x == hatStartPosition.x) && (transform.position.y == hatStartPosition.y) && (gameObject.name == "top hat 1")) {
-            shellController.GetComponent<HideBunny>().newBunny();
-            flag = true;
-        }
-        }
-
-        if (rFlag == true) {
-            if (realHat.transform.position == realHatTargetPosition) {
-                rFlag = false;
-            }
-            realHat.transform.position = Vector2.Lerp(realHat.transform.position, realHatTargetPosition, Easing(time));
-            time += Time.deltaTime;
-            
-        }
-
-    }
-
-    public GameObject realHat, chosenHat;
-    [SerializeField] private Vector3 realHatTargetPosition;
-    public static bool flagster = false;
-
-    public float x, y;
-
-    public void clear () {
-        gameObject.transform.position = new Vector2(x, y);
+        time = 0;
+        rFlag = false;
+        IsHatsMixing = true;
     }
 
     void OnMouseUpAsButton()
     {
-        if (flagster == false) {
-        Debug.Log("Up");
-        
-        wFlag = false;
-        rFlag = false;
-        glag = false;
+        if (IsAbleToChooseHat)
+        {
+            IsHatsMixing = false;
+            realHat = shellController.GetComponent<HideBunny>().newBunny();
+            chosenHat = gameObject;
 
-        realHat = shellController.GetComponent<HideBunny>().newHat;
-        chosenHat = gameObject;
+            realHatTargetPosition = realHat.transform.position;
+            realHatTargetPosition.y += 1.5f;
 
-        realHatTargetPosition = realHat.transform.position;
-        realHatTargetPosition.y += 1.5f;
-
-        if (realHat.name == chosenHat.name) { 
+            if (!(realHat.name == chosenHat.name))
+            {
+                gameObject.GetComponent<Animation>().Play();
+            }
             time = 0;
             rFlag = true;
-        }
-        else {
-            gameObject.GetComponent<Animation>().Play();
-
-            time = 0;
-            rFlag = true;
-        }
-        flagster = true;
+            IsAbleToChooseHat = false;
         }
     }
 
-    
 }
