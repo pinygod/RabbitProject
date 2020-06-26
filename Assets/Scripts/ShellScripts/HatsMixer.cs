@@ -59,6 +59,7 @@ public class HatsMixer : MonoBehaviour
     {
         if (IsAbleToChooseHat)
         {
+            IsAbleToChooseHat = false;
             IsHatsMixing = false;
             realHat = shellController.GetComponent<HideBunny>().newBunny();
             chosenHat = gameObject;
@@ -66,13 +67,12 @@ public class HatsMixer : MonoBehaviour
             realHatTargetPosition = realHat.transform.position;
             realHatTargetPosition.y += 1.5f;
 
-            if (!(realHat.name == chosenHat.name))
+            if (!(shellController.GetComponent<HideBunny>().CheckResult(chosenHat.name)))
             {
                 gameObject.GetComponent<Animation>().Play();
             }
             time = 0;
             rFlag = true;
-            IsAbleToChooseHat = false;
         }
     }
 

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonAction : MonoBehaviour
 {
-   private void OnMouseUpAsButton() {
-       GameObject.Find("AudioController").GetComponent<AudioSource>().Play();
-       switch (gameObject.name) {
+    private void OnMouseUpAsButton()
+    {
+        GameObject.Find("AudioController").GetComponent<AudioSource>().Play();
+        switch (gameObject.name)
+        {
             case "CatchButton":
                 SceneManager.LoadScene("RabbitCatchScene");
                 break;
@@ -19,7 +21,10 @@ public class ButtonAction : MonoBehaviour
                 break;
             case "PlayButton":
                 SceneManager.LoadScene("FarmScene");
-                break;                                
-       }
-   }
+                break;
+            case "ShellButton":
+                SceneManager.LoadScene("ShellGame");
+                break;
+        }
+    }
 }
