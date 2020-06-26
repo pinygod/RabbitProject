@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviour, IPointerClickHandler
 {
-    private int foodCount, fluffCount, whLevel, whFoodCapacity, whFluffCapacity, playerScore;
-    private int foodCost = 1, fluffCost = 2, rabbitCost = 50;
+    [SerializeField] private int foodCount, fluffCount, whLevel, whFoodCapacity, whFluffCapacity, playerScore;
+    private int foodCost = 1, fluffCost = 2, rabbitCost = 50, cageCost = 250;
     private bool[] cageStatus = new bool[4];
     public GameObject[] Cages = new GameObject[4];
-    public GameObject CageChoosePanel;
+    public GameObject CageChoosePanel, ShopPanel;
     public Text CurrentCoins;
+    public ControlValues controlValues;
 
-    private void getValues()
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Time.timeScale = 0f;
+        GetValues();
+        ShopPanel.SetActive(true);
+
+    }
+
+    private void GetValues()
     {
         Debug.Log("Getting values...");
 
@@ -28,18 +38,16 @@ public class Shop : MonoBehaviour
     {
         if (button.name == "FoodButton")
         {
-            if (whFoodCapacity - foodCount > 0 && playerScore > foodCost)
+            if (whFoodCapacity - foodCount > 0 && ChangePlayerScore(-foodCost))
             {
-                ChangePlayerScore(-1);
                 foodCount++;
                 PlayerPrefs.SetInt("WareHouseFood", foodCount);
             }
         }
         if (button.name == "FluffButton")
         {
-            if (whFluffCapacity - fluffCount > 0 && playerScore > fluffCost)
+            if (whFluffCapacity - fluffCount > 0 && ChangePlayerScore(-fluffCost))
             {
-                ChangePlayerScore(-2);
                 fluffCount++;
                 PlayerPrefs.SetInt("WareHouseFluff", fluffCount);
             }
@@ -48,12 +56,28 @@ public class Shop : MonoBehaviour
         {
             CheckCages();
         }
+        if (button.name == "CageButton")
+        {
+            int cageToActivate = CheckCagesForActivation();
+            if (cageToActivate != -1)
+            {
+                if (ChangePlayerScore(-cageCost))
+                {
+                    controlValues.ActivateCage(cageToActivate);
+                }
+            }
+            else
+            {
+                //TODO: all cages already opened message.
+            }
+
+        }
     }
 
     public void ChooseCageClick(string cage)
     {
         Debug.Log(playerScore);
-        if (playerScore >= rabbitCost)
+        if (ChangePlayerScore(-rabbitCost))
         {
             int rabbitsInCage = PlayerPrefs.GetInt(cage + "Rabbits");
             int cageCapacity = PlayerPrefs.GetInt(cage + "RabbitsCapacity");
@@ -61,28 +85,44 @@ public class Shop : MonoBehaviour
             {
                 rabbitsInCage++;
                 PlayerPrefs.SetInt(cage + "Rabbits", rabbitsInCage);
-                ChangePlayerScore(-rabbitCost);
             }
         }
 
     }
 
-    private void ChangePlayerScore(int size)
+    private bool ChangePlayerScore(int size)
     {
-        playerScore += size;
-        CurrentCoins.text = playerScore.ToString();
-        PlayerPrefs.SetInt("score", playerScore);
+        if (size < 0 && playerScore >= -size)
+        {
+            playerScore += size;
+            CurrentCoins.text = playerScore.ToString();
+            PlayerPrefs.SetInt("score", playerScore);
+            return true;
+        }
+        else if (size >= 0)
+        {
+            playerScore += size;
+            CurrentCoins.text = playerScore.ToString();
+            PlayerPrefs.SetInt("score", playerScore);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     public void OpenClick()
     {
         Time.timeScale = 0f;
-        getValues();
+        GetValues();
     }
 
     public void CloseClick()
     {
         Time.timeScale = 1f;
+        ShopPanel.SetActive(false);
     }
 
     private void CheckCages()
@@ -100,6 +140,16 @@ public class Shop : MonoBehaviour
                 Cages[i - 1].SetActive(false);
             }
         }
+    }
+
+    private int CheckCagesForActivation()
+    {
+        for (int i = 1; i < 5; i++)
+        {
+            if (PlayerPrefs.GetString("Cage" + i + "Status") == "off")
+                return i;
+        }
+        return -1;
     }
 
 }

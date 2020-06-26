@@ -6,7 +6,7 @@ public class ControlValues : MonoBehaviour
 {
     public GameObject[] Cages = new GameObject[4];
 
-    void Start()
+    void Awake()
     {
         if (PlayerPrefs.HasKey("score") == false)
         {
@@ -50,8 +50,8 @@ public class ControlValues : MonoBehaviour
                     int level;
                     if (!PlayerPrefs.HasKey("Cage" + i + "Level"))
                     {
-                        PlayerPrefs.SetInt("Cage" + i + "Level", 1);
                         level = 1;
+                        PlayerPrefs.SetInt("Cage" + i + "Level", level);
                     }
                     else
                     {
@@ -97,5 +97,19 @@ public class ControlValues : MonoBehaviour
 
         #endregion
 
+    }
+
+    public void ActivateCage(int cageNumber)
+    {
+        PlayerPrefs.SetString("Cage" + cageNumber + "Status", "on");
+        int level = 1;
+        PlayerPrefs.SetInt("Cage" + cageNumber + "Level", level);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "Food", 0);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "Fluff", 0);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "Rabbits", 0);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "RabbitsCapacity", level * 5);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "FoodCapacity", level * 30);
+        PlayerPrefs.SetInt("Cage" + cageNumber + "FluffCapacity", level * 50);
+        Cages[cageNumber - 1].SetActive(true);
     }
 }
