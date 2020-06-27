@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/FarmScene.unity
     guid: 0ae4137d26585ff438ab191507cc19e2
   - enabled: 1
-    path: Assets/Scenes/CasinoScene.unity
-    guid: 882cfc3879e0e85468ee18d50402ee33
+    path: Assets/Scenes/CasinoHall.unity
+    guid: 78178fa53fa7c9e4aad120306e87379b
   - enabled: 1
     path: Assets/Scenes/SlotScene.unity
     guid: bbafc0a8322892a4385c88f460526e25

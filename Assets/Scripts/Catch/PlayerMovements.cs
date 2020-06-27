@@ -7,7 +7,7 @@ public class PlayerMovements : MonoBehaviour
 {
     public float speed;
     public Text CurrentCoins;
-    private static int PlayerScore;
+    private static int playerScore;
     private Animator running;
     private void Start()
     {
@@ -16,8 +16,8 @@ public class PlayerMovements : MonoBehaviour
         {
             PlayerPrefs.SetInt("score", 0);
         }
-        PlayerScore = PlayerPrefs.GetInt("score");
-        CurrentCoins.text = PlayerScore.ToString();
+        playerScore = PlayerPrefs.GetInt("score");
+        CurrentCoins.text = playerScore.ToString();
     }
     void Update()
     {
@@ -51,7 +51,7 @@ public class PlayerMovements : MonoBehaviour
 
     void OnDestroy()
     {
-        PlayerPrefs.SetInt("score", PlayerScore);
+        PlayerPrefs.SetInt("score", playerScore);
     }
 
     private void OnCollisionStay(Collision collision)
@@ -60,16 +60,29 @@ public class PlayerMovements : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameObject.GetComponent<AudioSource>().Play();
-            increaseScore(Random.Range(2, 3));
+            ChangePlayerScore(Random.Range(2, 3));
         }
     }
 
-    public void increaseScore(int score)
+    public bool ChangePlayerScore(int size)
     {
-        if (PlayerScore >= score)
+        if (size < 0 && playerScore >= -size)
         {
-            PlayerScore += score;
-            CurrentCoins.text = PlayerScore.ToString();
+            playerScore += size;
+            CurrentCoins.text = playerScore.ToString();
+            PlayerPrefs.SetInt("score", playerScore);
+            return true;
+        }
+        else if (size >= 0)
+        {
+            playerScore += size;
+            CurrentCoins.text = playerScore.ToString();
+            PlayerPrefs.SetInt("score", playerScore);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

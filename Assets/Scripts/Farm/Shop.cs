@@ -76,6 +76,7 @@ public class Shop : MonoBehaviour, IPointerClickHandler
 
     public void ChooseCageClick(string cage)
     {
+        GetValues();
         Debug.Log(playerScore);
         if (ChangePlayerScore(-rabbitCost))
         {

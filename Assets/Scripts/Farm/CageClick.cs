@@ -19,7 +19,7 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
         lastGameObject = gameObject;
         Debug.Log("Was initiated: " + gameObject.name);
         Time.timeScale = 0f;
-
+        rabbitsInCage = 5;
         getValues();
         if (PlayerPrefs.HasKey(gameObject.name + "LastSession"))
         {

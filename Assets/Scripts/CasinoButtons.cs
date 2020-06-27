@@ -1,30 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class ButtonAction : MonoBehaviour
+public class CasinoButtons : MonoBehaviour, IPointerClickHandler
 {
-    private void OnMouseUpAsButton()
+    public void OnPointerClick(PointerEventData eventData)
     {
         GameObject.Find("AudioController").GetComponent<AudioSource>().Play();
         switch (gameObject.name)
         {
-            case "CatchButton":
-                SceneManager.LoadScene("RabbitCatchScene");
-                break;
-            case "CasinoButton":
-                SceneManager.LoadScene("CasinoHall");
-                break;
-            case "OptionsButton":
+            case "DoubleButton":
                 SceneManager.LoadScene("DoubleScene");
                 break;
-            case "PlayButton":
-                SceneManager.LoadScene("FarmScene");
+            case "SlotButton":
+                SceneManager.LoadScene("SlotScene");
                 break;
             case "ShellButton":
                 SceneManager.LoadScene("ShellGame");
                 break;
         }
+
     }
 }

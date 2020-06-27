@@ -19,7 +19,7 @@ public class RabbitsMove : MonoBehaviour {
         SpriteCnt++;
         if (transform.position.y < -(Camera.main.orthographicSize) || transform.position.x > (Camera.main.orthographicSize * Screen.width / Screen.height) || transform.position.x < -(Camera.main.orthographicSize * Screen.width / Screen.height))
         {
-            GameObject.Find("PlayerRabbit").GetComponent<PlayerMovements>().increaseScore(-1);
+            GameObject.Find("PlayerRabbit").GetComponent<PlayerMovements>().ChangePlayerScore(-1);
             Destroy(gameObject);
         }
     }
