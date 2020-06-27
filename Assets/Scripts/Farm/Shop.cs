@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private int foodCount, fluffCount, whLevel, whFoodCapacity, whFluffCapacity, playerScore;
-    private int foodCost = 1, fluffCost = 2, rabbitCost = 50, cageCost = 250;
+    [SerializeField] private int hayCount, fluffCount, seedsCount, whLevel, whFreeSpace, whCapacity, playerScore;
+    private int hayCost = 1, fluffCost = 2, rabbitCost = 50, cageCost = 250, seedsCost = 30;
     private bool[] cageStatus = new bool[4];
     public GameObject[] Cages = new GameObject[4];
     public GameObject CageChoosePanel, ShopPanel;
@@ -17,7 +17,6 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Time.timeScale = 0f;
-        GetValues();
         ShopPanel.SetActive(true);
 
     }
@@ -27,72 +26,74 @@ public class Shop : MonoBehaviour, IPointerClickHandler
         Debug.Log("Getting values...");
 
         whLevel = PlayerPrefs.GetInt("WareHouseLevel");
-        whFoodCapacity = PlayerPrefs.GetInt("WareHouseFoodCapacity");
-        whFluffCapacity = PlayerPrefs.GetInt("WareHouseFluffCapacity");
-        foodCount = PlayerPrefs.GetInt("WareHouseFood");
+        whCapacity = PlayerPrefs.GetInt("WareHouseCapacity");
+        whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
+        hayCount = PlayerPrefs.GetInt("WareHouseHay");
         fluffCount = PlayerPrefs.GetInt("WareHouseFluff");
+        seedsCount = PlayerPrefs.GetInt("WareHouseSeeds");
         playerScore = PlayerPrefs.GetInt("score");
     }
 
     public void BuyClick(Button button)
     {
-        if (button.name == "FoodButton")
+        GetValues();
+        if (button.name == "HayButton")
         {
-            if (whFoodCapacity - foodCount > 0 && ChangePlayerScore(-foodCost))
+            if (whFreeSpace > 0 && ChangePlayerScore(-hayCost))
             {
-                foodCount++;
-                PlayerPrefs.SetInt("WareHouseFood", foodCount);
+                PlayerPrefs.SetInt("WareHouseHay", ++hayCount);
+                PlayerPrefs.SetInt("WareHouseFreeSpace", --whFreeSpace);
             }
         }
         if (button.name == "FluffButton")
         {
-            if (whFluffCapacity - fluffCount > 0 && ChangePlayerScore(-fluffCost))
+            if (whFreeSpace > 0 && ChangePlayerScore(-fluffCost))
             {
-                fluffCount++;
-                PlayerPrefs.SetInt("WareHouseFluff", fluffCount);
+                PlayerPrefs.SetInt("WareHouseFluff", ++fluffCount);
+                PlayerPrefs.SetInt("WareHouseFreeSpace", --whFreeSpace);
             }
         }
         if (button.name == "RabbitButton")
         {
-            CheckCages();
-        }
-        if (button.name == "CageButton")
-        {
-            int cageToActivate = CheckCagesForActivation();
-            if (cageToActivate != -1)
-            {
-                if (ChangePlayerScore(-cageCost))
-                {
-                    controlValues.ActivateCage(cageToActivate);
-                }
-            }
-            else
-            {
-                //TODO: all cages already opened message.
-            }
-
-        }
-    }
-
-    public void ChooseCageClick(string cage)
-    {
-        GetValues();
-        Debug.Log(playerScore);
-        if (ChangePlayerScore(-rabbitCost))
-        {
-            int rabbitsInCage = PlayerPrefs.GetInt(cage + "Rabbits");
-            int cageCapacity = PlayerPrefs.GetInt(cage + "RabbitsCapacity");
-            if (cageCapacity - rabbitsInCage > 0)
+            Debug.Log(playerScore);
+            int rabbitsInCage = PlayerPrefs.GetInt("RabbitsCageRabbits");
+            int cageCapacity = PlayerPrefs.GetInt("RabbitsCageRabbitsCapacity");
+            if (cageCapacity - rabbitsInCage > 0 && ChangePlayerScore(-rabbitCost))
             {
                 rabbitsInCage++;
-                PlayerPrefs.SetInt(cage + "Rabbits", rabbitsInCage);
+                PlayerPrefs.SetInt("RabbitsCageRabbits", rabbitsInCage);
             }
         }
-
+        // if (button.name == "CageButton")
+        // {
+        //     int cageToActivate = CheckCagesForActivation();
+        //     if (cageToActivate != -1)
+        //     {
+        //         if (ChangePlayerScore(-cageCost))
+        //         {
+        //             controlValues.ActivateCage(cageToActivate);
+        //         }
+        //     }
+        //     else
+        //     {
+        //         //TODO: all cages already opened message.
+        //     }
+        // }
+        if (button.name == "SeedsButton")
+        {
+            if (whFreeSpace >= 5 && ChangePlayerScore(-seedsCost))
+            {
+                seedsCount += 5;
+                PlayerPrefs.SetInt("WareHouseSeeds", seedsCount);
+                whFreeSpace -= 5;
+                PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
+            }
+        }
     }
 
     private bool ChangePlayerScore(int size)
     {
+        playerScore = PlayerPrefs.GetInt("score");
         if (size < 0 && playerScore >= -size)
         {
             playerScore += size;

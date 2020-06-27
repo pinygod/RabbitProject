@@ -5,12 +5,13 @@ using UnityEngine;
 public class ControlValues : MonoBehaviour
 {
     public GameObject[] Cages = new GameObject[4];
+    public GameObject[] Gardens = new GameObject[4];
 
     void Awake()
     {
-        if (PlayerPrefs.HasKey("score") == false)
+        if (!PlayerPrefs.HasKey("score"))
         {
-            PlayerPrefs.SetInt("score", 0);
+            PlayerPrefs.SetInt("score", 21456);
         }
 
 
@@ -19,12 +20,20 @@ public class ControlValues : MonoBehaviour
         if (!PlayerPrefs.HasKey("WareHouseLevel"))
         {
             PlayerPrefs.SetInt("WareHouseLevel", 1);
-            PlayerPrefs.SetInt("WareHouseFoodCapacity", 30);
-            PlayerPrefs.SetInt("WareHouseFluffCapacity", 60);
+            PlayerPrefs.SetInt("WareHouseCapacity", 100);
+            PlayerPrefs.SetInt("WareHouseFreeSpace", 100);
         }
-        if (!PlayerPrefs.HasKey("WareHouseFood"))
+        if (!PlayerPrefs.HasKey("WareHouseHay"))
         {
-            PlayerPrefs.SetInt("WareHouseFood", 0);
+            PlayerPrefs.SetInt("WareHouseHay", 0);
+        }
+        if (!PlayerPrefs.HasKey("WareHouseCarrot"))
+        {
+            PlayerPrefs.SetInt("WareHouseCarrot", 0);
+        }
+        if (!PlayerPrefs.HasKey("WareHouseSeeds"))
+        {
+            PlayerPrefs.SetInt("WareHouseSeeds", 0);
         }
         if (!PlayerPrefs.HasKey("WareHouseFluff"))
         {
@@ -36,62 +45,62 @@ public class ControlValues : MonoBehaviour
 
         #region Cages_Prefs
 
-        PlayerPrefs.SetString("Cage1Status", "on");
+        int level;
+        if (!PlayerPrefs.HasKey("RabbitsCageLevel"))
+        {
+            level = 1;
+            PlayerPrefs.SetInt("RabbitsCageLevel", level);
+        }
+        else
+        {
+            level = PlayerPrefs.GetInt("RabbitsCageLevel");
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageFood"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageFood", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageFluff"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageFluff", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageRabbits"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageRabbits", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageRabbitsCapacity"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageRabbitsCapacity", level * 5);
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageFoodCapacity"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageFoodCapacity", level * 30);
+        }
+
+        if (!PlayerPrefs.HasKey("RabbitsCageFluffCapacity"))
+        {
+            PlayerPrefs.SetInt("RabbitsCageFluffCapacity", level * 50);
+        }
+
+        #endregion
+
+
+        #region Gardens_Prefs
+
         for (int i = 1; i <= 4; i++)
         {
-            if (!PlayerPrefs.HasKey("Cage" + i + "Status"))
+            if (!PlayerPrefs.HasKey("Garden" + i + "Seeds"))
             {
-                PlayerPrefs.SetString("Cage" + i + "Status", "off");
+                PlayerPrefs.SetInt("Garden" + i + "Seeds", 0);
             }
-            else
+
+            if (!PlayerPrefs.HasKey("Garden" + i + "Carrot"))
             {
-                if (PlayerPrefs.GetString("Cage" + i + "Status") == "on")
-                {
-                    int level;
-                    if (!PlayerPrefs.HasKey("Cage" + i + "Level"))
-                    {
-                        level = 1;
-                        PlayerPrefs.SetInt("Cage" + i + "Level", level);
-                    }
-                    else
-                    {
-                        level = PlayerPrefs.GetInt("Cage" + i + "Level");
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "Food"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "Food", 0);
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "Fluff"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "Fluff", 0);
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "Rabbits"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "Rabbits", 0);
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "RabbitsCapacity"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "RabbitsCapacity", level * 5);
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "FoodCapacity"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "FoodCapacity", level * 30);
-                    }
-
-                    if (!PlayerPrefs.HasKey("Cage" + i + "FluffCapacity"))
-                    {
-                        PlayerPrefs.SetInt("Cage" + i + "FluffCapacity", level * 50);
-                    }
-                }
-                else
-                {
-                    Cages[i - 1].SetActive(false);
-                }
+                PlayerPrefs.SetInt("Cage" + i + "Fluff", 0);
             }
         }
 

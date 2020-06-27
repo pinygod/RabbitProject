@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class WareHouse : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
-    private int foodCount, fluffCount, whLevel, whFoodCapacity, whFluffCapacity;
+    private int hayCount, fluffCount, seedsCount, carrotCount, whLevel, whCapacity, whFreeSpace;
     [Header("Text fields")]
-    public Text FoodText, FluffText, PlayerMoney;
+    public Text FoodText, FluffText, SeedsText, CarrotText, PlayerMoney;
     [Header("Warehouse menu Panel")]
     public GameObject whPanel;
 
@@ -18,8 +18,10 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         Time.timeScale = 0f;
         GetValues();
 
-        FoodText.text = foodCount.ToString() + " / " + whFoodCapacity.ToString();
-        FluffText.text = fluffCount.ToString() + " / " + whFluffCapacity.ToString();
+        FoodText.text = hayCount.ToString();
+        FluffText.text = fluffCount.ToString();
+        SeedsText.text = seedsCount.ToString();
+        CarrotText.text = carrotCount.ToString();
 
         whPanel.SetActive(true);
 
@@ -29,22 +31,26 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("Getting values...");
         whLevel = PlayerPrefs.GetInt("WareHouseLevel");
-        whFoodCapacity = PlayerPrefs.GetInt("WareHouseFoodCapacity");
-        whFluffCapacity = PlayerPrefs.GetInt("WareHouseFluffCapacity");
-        foodCount = PlayerPrefs.GetInt("WareHouseFood");
+        whCapacity = PlayerPrefs.GetInt("WareHouseCapacity");
+        whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
+        hayCount = PlayerPrefs.GetInt("WareHouseHay");
         fluffCount = PlayerPrefs.GetInt("WareHouseFluff");
+        seedsCount = PlayerPrefs.GetInt("WareHouseSeeds");
+        carrotCount = PlayerPrefs.GetInt("WareHouseCarrot");
     }
 
     private void UpdateValues()
     {
         Debug.Log("Updating values...");
-        PlayerPrefs.SetInt("WareHouseFood", foodCount);
+        PlayerPrefs.SetInt("WareHouseHay", hayCount);
         PlayerPrefs.SetInt("WareHouseFluff", fluffCount);
         PlayerPrefs.SetInt("WareHouseLevel", whLevel);
-        PlayerPrefs.SetInt("WareHouseFoodCapacity", whFoodCapacity);
-        PlayerPrefs.SetInt("WareHouseFluffCapacity", whFluffCapacity);
-        FoodText.text = foodCount.ToString() + " / " + whFoodCapacity.ToString();
-        FluffText.text = fluffCount.ToString() + " / " + whFluffCapacity.ToString();
+        PlayerPrefs.SetInt("WareHouseCapacity", whCapacity);
+        PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
+        FoodText.text = hayCount.ToString();
+        FluffText.text = fluffCount.ToString();
+        SeedsText.text = seedsCount.ToString();
+        CarrotText.text = carrotCount.ToString();
     }
 
     #region Click events (buttons) inside warehouse
@@ -59,6 +65,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         if (fluffCount > 0)
         {
             int pMoney = PlayerPrefs.GetInt("score") + Random.Range(fluffCount - fluffCount / 4, fluffCount + fluffCount / 4);
+            whFreeSpace += fluffCount;
             fluffCount = 0;
             UpdateValues();
             PlayerPrefs.SetInt("score", pMoney);
@@ -74,18 +81,23 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     {
         if (fluffCount > 0)
         {
-            int maxFoodCapacity = whFoodCapacity - foodCount;
+            int maxFoodCapacity = whFreeSpace;
 
             if (fluffCount > maxFoodCapacity)
             {
                 int traded = Random.Range(maxFoodCapacity, maxFoodCapacity + maxFoodCapacity / 5);
-                foodCount += Mathf.Min(maxFoodCapacity, traded);
-                fluffCount -= maxFoodCapacity - (traded - maxFoodCapacity);
+                int hayDiff = Mathf.Min(maxFoodCapacity, traded);
+                hayCount += hayDiff;
+                int fluffDiff = maxFoodCapacity - (traded - maxFoodCapacity);
+                whFreeSpace = whFreeSpace - hayDiff + fluffDiff;
+                fluffCount -= fluffDiff;
             }
             else
             {
                 int traded = Random.Range(fluffCount, fluffCount + fluffCount / 5);
-                foodCount += Mathf.Min(maxFoodCapacity, traded);
+                int hayDiff = Mathf.Min(maxFoodCapacity, traded);
+                hayCount += hayDiff;
+                whFreeSpace = whFreeSpace - hayDiff + fluffCount;
                 fluffCount = 0;
             }
             UpdateValues();
@@ -103,8 +115,8 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         {
             pMoney -= whLevel * 1000;
             whLevel++;
-            whFoodCapacity = whLevel * 30;
-            whFluffCapacity = whLevel * 60;
+            whCapacity = whLevel * 100;
+            whFreeSpace += 100;
             UpdateValues();
             PlayerPrefs.SetInt("score", pMoney);
             PlayerMoney.text = pMoney.ToString();
@@ -121,27 +133,89 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     public int PutFluff(int newFluff)
     {
         GetValues();
-        int freeSpace = whFluffCapacity - fluffCount, leftover;
-        if (freeSpace >= newFluff)
+        int leftover;
+        if (whFreeSpace >= newFluff)
         {
             PlayerPrefs.SetInt("WareHouseFluff", fluffCount + newFluff);
             leftover = 0;
+            whFreeSpace -= newFluff;
         }
         else
         {
-            PlayerPrefs.SetInt("WareHouseFluff", fluffCount + freeSpace);
-            leftover = newFluff - freeSpace;
+            PlayerPrefs.SetInt("WareHouseFluff", fluffCount + whFreeSpace);
+            leftover = newFluff - whFreeSpace;
+            whFreeSpace = 0;
         }
+        PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
 
         return leftover;
     }
 
-    public bool GetFood()
+    public int PutSeeds(int seeds)
     {
         GetValues();
-        if (foodCount > 0)
+        int leftover;
+        if (whFreeSpace >= seeds)
         {
-            PlayerPrefs.SetInt("WareHouseFood", --foodCount);
+            PlayerPrefs.SetInt("WareHouseSeeds", seedsCount + seeds);
+            leftover = 0;
+            whFreeSpace -= seeds;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("WareHouseSeeds", seedsCount + whFreeSpace);
+            leftover = seeds - whFreeSpace;
+            whFreeSpace = 0;
+        }
+        PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
+
+        return leftover;
+    }
+
+    public int PutCarrot(int carrot)
+    {
+        GetValues();
+        int leftover;
+        if (whFreeSpace >= carrot)
+        {
+            PlayerPrefs.SetInt("WareHouseCarrot", carrotCount + carrot);
+            leftover = 0;
+            whFreeSpace -= carrot;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("WareHouseCarrot", carrotCount + whFreeSpace);
+            leftover = carrot - whFreeSpace;
+            whFreeSpace = 0;
+        }
+        PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
+
+        return leftover;
+    }
+
+    public bool GetSeeds()
+    {
+        GetValues();
+        if (seedsCount >= 5)
+        {
+            seedsCount -= 5;
+            PlayerPrefs.SetInt("WareHouseSeeds", seedsCount);
+            whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
+            whFreeSpace += 5;
+            PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
+            return true;
+        }
+        else return false;
+    }
+
+    public bool GetHay()
+    {
+        GetValues();
+        if (hayCount > 0)
+        {
+            PlayerPrefs.SetInt("WareHouseHay", --hayCount);
+            whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
+            PlayerPrefs.SetInt("WareHouseFreeSpace", ++whFreeSpace);
             return true;
         }
         else return false;

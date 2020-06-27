@@ -19,7 +19,6 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
         lastGameObject = gameObject;
         Debug.Log("Was initiated: " + gameObject.name);
         Time.timeScale = 0f;
-        rabbitsInCage = 5;
         getValues();
         if (PlayerPrefs.HasKey(gameObject.name + "LastSession"))
         {
@@ -82,7 +81,7 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
     {
         if (lastFood < cageFoodCapacity)
         {
-            if (WareHouse.GetComponent<WareHouse>().GetFood())
+            if (WareHouse.GetComponent<WareHouse>().GetHay())
             {
                 FoodInCageText.text = (++lastFood).ToString() + "/" + cageFoodCapacity;
                 Debug.Log("Was added to: " + lastGameObject.name);
