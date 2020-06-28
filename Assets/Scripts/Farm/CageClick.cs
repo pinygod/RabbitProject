@@ -8,11 +8,24 @@ using System;
 public class CageClick : MonoBehaviour, IPointerClickHandler
 {
 
-    public GameObject CagePanel, WareHouse;
+    public GameObject CagePanel, WareHouse, CageRabit, SpawnSpace;
     public Text RabbitsInCageText, FoodInCageText, FluffInCageText, PlayerMoney;
     private static float cageWasOffline;
     private static int lastFood, lastFluff, rabbitsInCage, newFluff, cageLevel, cageFoodCapacity, cageFluffCapacity, cageRabbitsCapacity;
     private static GameObject lastGameObject;
+
+    void Start()
+    {
+        rabbitsInCage = PlayerPrefs.GetInt(gameObject.name + "Rabbits");
+        Vector3 newPos;
+        for (int i = 0; i < rabbitsInCage; i++)
+        {
+            newPos = SpawnSpace.transform.position;
+            newPos.x = UnityEngine.Random.Range(newPos.x - 4f, newPos.x + 4f);
+            newPos.y = UnityEngine.Random.Range(newPos.y - 2f, newPos.y + 2f);
+            Instantiate(CageRabit, newPos, Quaternion.identity);
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

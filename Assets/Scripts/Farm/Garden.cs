@@ -69,7 +69,7 @@ public class Garden : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         PlayerPrefs.SetInt(gameObject.name + "LastState", state);
     }
@@ -95,9 +95,9 @@ public class Garden : MonoBehaviour, IPointerClickHandler
                 break;
             case 2:
                 int whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
-                if (whFreeSpace >= 10)
+                if (whFreeSpace >= 7)
                 {
-                    WareHouse.GetComponent<WareHouse>().PutSeeds(5);
+                    WareHouse.GetComponent<WareHouse>().PutSeeds(2);
                     WareHouse.GetComponent<WareHouse>().PutCarrot(5);
                     state = 0;
                     gameObject.GetComponent<SpriteRenderer>().sprite = Sprites[0];

@@ -218,6 +218,12 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
             PlayerPrefs.SetInt("WareHouseFreeSpace", ++whFreeSpace);
             return true;
         }
+        else if (carrotCount > 0) {
+            PlayerPrefs.SetInt("WareHouseCarrot", --carrotCount);
+            whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
+            PlayerPrefs.SetInt("WareHouseFreeSpace", ++whFreeSpace);
+            return true;
+        }
         else return false;
     }
     #endregion

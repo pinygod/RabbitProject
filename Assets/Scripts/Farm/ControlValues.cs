@@ -11,7 +11,7 @@ public class ControlValues : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("score"))
         {
-            PlayerPrefs.SetInt("score", 21456);
+            PlayerPrefs.SetInt("score", 0);
         }
 
 
