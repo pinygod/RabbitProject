@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour
 {
+    public GameObject ArrowsCanvas;
     public float speed;
     public Text CurrentCoins;
     private static int playerScore;
@@ -18,6 +19,7 @@ public class PlayerMovements : MonoBehaviour
         }
         playerScore = PlayerPrefs.GetInt("score");
         CurrentCoins.text = playerScore.ToString();
+        Invoke("DisableArrows", 10);
     }
     void Update()
     {
@@ -52,6 +54,10 @@ public class PlayerMovements : MonoBehaviour
     void OnDestroy()
     {
         PlayerPrefs.SetInt("score", playerScore);
+    }
+
+    private void DisableArrows(){
+        ArrowsCanvas.SetActive(false);
     }
 
     private void OnCollisionStay(Collision collision)

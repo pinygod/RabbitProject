@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class DoubleScript : MonoBehaviour
 {
     public GameObject[] Colors;
-    public GameObject scrollPanel, inputPanel;
-    public Text CurrentCoins, BetSizeText;
+    public GameObject scrollPanel, inputPanel, WinBackgroundPanel;
+    public Text CurrentCoins, BetSizeText, WinSizeText;
     public Button SpinButton;
     public bool IsSpinning = false;
     public float scrollSpeed;
@@ -37,15 +37,18 @@ public class DoubleScript : MonoBehaviour
                     IsSpinning = false;
                     if (playerColor == hit.collider.gameObject.tag)
                     {
+                        int winSize;
                         if (playerColor == "GreenD")
                         {
-                            ChangePlayerScore(betSize * 7);
+                            winSize = betSize * 7;
                         }
                         else
                         {
-                            ChangePlayerScore(betSize * 2);
+                            winSize = betSize * 2;
                         }
-                        
+                        ChangePlayerScore(winSize);
+                        WinSizeText.text = winSize.ToString();
+                        WinBackgroundPanel.SetActive(true);
                     }
                     SpinButton.interactable = true;
                 }
@@ -59,6 +62,7 @@ public class DoubleScript : MonoBehaviour
 
     public void StartBtn()
     {
+        
         SpinButton.interactable = false;
         inputPanel.SetActive(true);
 
@@ -66,6 +70,7 @@ public class DoubleScript : MonoBehaviour
 
     public void BetDone(Button button)
     {
+        WinBackgroundPanel.SetActive(false);
         fade = Random.Range(3.3f, 3.5f);
         playerColor = button.tag;
         if (playerScore >= betSize)

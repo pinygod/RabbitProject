@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     private int hayCost = 1, fluffCost = 2, rabbitCost = 50, cageCost = 250, seedsCost = 30;
     private bool[] cageStatus = new bool[4];
     public GameObject[] Cages = new GameObject[4];
-    public GameObject CageChoosePanel, ShopPanel;
+    public GameObject CageChoosePanel, ShopPanel, RabbitCage;
     public Text CurrentCoins;
     public ControlValues controlValues;
 
@@ -55,30 +55,16 @@ public class Shop : MonoBehaviour, IPointerClickHandler
         }
         if (button.name == "RabbitButton")
         {
-            Debug.Log(playerScore);
             int rabbitsInCage = PlayerPrefs.GetInt("RabbitsCageRabbits");
             int cageCapacity = PlayerPrefs.GetInt("RabbitsCageRabbitsCapacity");
             if (cageCapacity - rabbitsInCage > 0 && ChangePlayerScore(-rabbitCost))
             {
                 rabbitsInCage++;
                 PlayerPrefs.SetInt("RabbitsCageRabbits", rabbitsInCage);
+                RabbitCage.GetComponent<CageClick>().SpawnRabbit();
             }
         }
-        // if (button.name == "CageButton")
-        // {
-        //     int cageToActivate = CheckCagesForActivation();
-        //     if (cageToActivate != -1)
-        //     {
-        //         if (ChangePlayerScore(-cageCost))
-        //         {
-        //             controlValues.ActivateCage(cageToActivate);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         //TODO: all cages already opened message.
-        //     }
-        // }
+
         if (button.name == "SeedsButton")
         {
             if (whFreeSpace >= 5 && ChangePlayerScore(-seedsCost))

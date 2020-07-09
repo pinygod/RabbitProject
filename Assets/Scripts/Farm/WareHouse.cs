@@ -9,7 +9,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private int hayCount, fluffCount, seedsCount, carrotCount, whLevel, whCapacity, whFreeSpace;
     [Header("Text fields")]
-    public Text FoodText, FluffText, SeedsText, CarrotText, PlayerMoney;
+    public Text FoodText, FluffText, SeedsText, CarrotText, PlayerMoney, CapacityText;
     [Header("Warehouse menu Panel")]
     public GameObject whPanel;
 
@@ -17,7 +17,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     {
         Time.timeScale = 0f;
         GetValues();
-
+        CapacityText.text = (whCapacity - whFreeSpace).ToString() + " / " + whCapacity.ToString();
         FoodText.text = hayCount.ToString();
         FluffText.text = fluffCount.ToString();
         SeedsText.text = seedsCount.ToString();
@@ -51,6 +51,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
         FluffText.text = fluffCount.ToString();
         SeedsText.text = seedsCount.ToString();
         CarrotText.text = carrotCount.ToString();
+        CapacityText.text = whFreeSpace.ToString() + " / " + whCapacity.ToString();
     }
 
     #region Click events (buttons) inside warehouse
@@ -81,7 +82,7 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     {
         if (fluffCount > 0)
         {
-            int maxFoodCapacity = whFreeSpace;
+            int maxFoodCapacity = Mathf.Max(whFreeSpace, fluffCount);
 
             if (fluffCount > maxFoodCapacity)
             {
@@ -196,12 +197,12 @@ public class WareHouse : MonoBehaviour, IPointerClickHandler
     public bool GetSeeds()
     {
         GetValues();
-        if (seedsCount >= 5)
+        if (seedsCount >= 2)
         {
-            seedsCount -= 5;
+            seedsCount -= 2;
             PlayerPrefs.SetInt("WareHouseSeeds", seedsCount);
             whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");
-            whFreeSpace += 5;
+            whFreeSpace += 2;
             PlayerPrefs.SetInt("WareHouseFreeSpace", whFreeSpace);
             return true;
         }

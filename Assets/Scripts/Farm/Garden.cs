@@ -91,7 +91,7 @@ public class Garden : MonoBehaviour, IPointerClickHandler
                 }
                 break;
             case 1:
-                //растет
+                //growing
                 break;
             case 2:
                 int whFreeSpace = PlayerPrefs.GetInt("WareHouseFreeSpace");

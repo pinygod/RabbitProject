@@ -17,13 +17,9 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         rabbitsInCage = PlayerPrefs.GetInt(gameObject.name + "Rabbits");
-        Vector3 newPos;
         for (int i = 0; i < rabbitsInCage; i++)
         {
-            newPos = SpawnSpace.transform.position;
-            newPos.x = UnityEngine.Random.Range(newPos.x - 4f, newPos.x + 4f);
-            newPos.y = UnityEngine.Random.Range(newPos.y - 2f, newPos.y + 2f);
-            Instantiate(CageRabit, newPos, Quaternion.identity);
+            SpawnRabbit();
         }
     }
 
@@ -79,6 +75,15 @@ public class CageClick : MonoBehaviour, IPointerClickHandler
         cageRabbitsCapacity = PlayerPrefs.GetInt(gameObject.name + "RabbitsCapacity");
         cageFoodCapacity = PlayerPrefs.GetInt(gameObject.name + "FoodCapacity");
         cageFluffCapacity = PlayerPrefs.GetInt(gameObject.name + "FluffCapacity");
+    }
+
+    public void SpawnRabbit()
+    {
+        Vector3 newPos;
+        newPos = SpawnSpace.transform.position;
+        newPos.x = UnityEngine.Random.Range(newPos.x - 4f, newPos.x + 4f);
+        newPos.y = UnityEngine.Random.Range(newPos.y - 2f, newPos.y + 2f);
+        Instantiate(CageRabit, newPos, Quaternion.identity);
     }
 
     public void OnCloseClick()

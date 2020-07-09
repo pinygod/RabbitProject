@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject Player, ArrowsCanvas;
     private float currentX, currentY, lastX, lastY;
     private Vector3 targetPosition;
     private Vector2 offset = new Vector2(1f, -2f);
@@ -16,6 +17,10 @@ public class CameraController : MonoBehaviour
         lastX = (Player.transform.position.x);
         lastY = (Player.transform.position.y);
         targetPosition = transform.position;
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "GI"))
+        {
+            DisableArrowss();
+        }
     }
 
     void Update()
@@ -65,5 +70,13 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), Mathf.Clamp(transform.position.y, bottomLimit, upperLimit), transform.position.z);
         }
 
+    }
+
+    public void DisableArrowss(){
+        Invoke("DisableArrows", 10);
+    }
+
+    private void DisableArrows(){
+        ArrowsCanvas.SetActive(false);
     }
 }

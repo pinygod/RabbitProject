@@ -9,11 +9,11 @@ public class RouletteScript : MonoBehaviour
     private ScrollRoulette sr1, sr2, sr3;
     public GameObject[] Slots;
     public GameObject[] Panels;
-    public GameObject CenterPanel;
-    public Button SpinButton, MinusButton, PlusButton;
+    public GameObject CenterPanel, WinBackgroundPanel;
+    public Button SpinButton;
     public bool IsSpinning = false, Continue = false;
     public float ScrollSpeed, Fade;
-    public Text CurrentCoins, BetSizeText;
+    public Text CurrentCoins, BetSizeText, WinSizeText;
     private int playerScore, sum, betSize = 10;
     private RaycastHit2D[] hit;
 
@@ -58,7 +58,8 @@ public class RouletteScript : MonoBehaviour
                     sum *= betSize / 5;
                     SpinButton.interactable = true;
                 }
-
+                WinSizeText.text = sum.ToString();
+                WinBackgroundPanel.SetActive(true);
                 ChangePlayerScore(sum);
             }
         }
@@ -66,6 +67,7 @@ public class RouletteScript : MonoBehaviour
 
     public void StartBtn()
     {
+        WinBackgroundPanel.SetActive(false);
         playerScore = PlayerPrefs.GetInt("score");
         if (playerScore >= betSize)
         {
